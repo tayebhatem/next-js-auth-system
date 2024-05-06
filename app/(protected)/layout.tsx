@@ -129,7 +129,7 @@ export default function ProtectedLayout({children}:{children:React.ReactNode}) {
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
               <Avatar>
-  <AvatarImage src={user?.image || null|| undefined} />
+  <AvatarImage src={user?.image || ""} />
   <AvatarFallback>
   <CircleUser className="h-5 w-5" />
   </AvatarFallback>
