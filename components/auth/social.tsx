@@ -5,10 +5,13 @@ import { FaGithub } from "react-icons/fa"
 import { Button } from "../ui/button"
 import { signIn } from "next-auth/react"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
+import { useSearchParams } from "next/navigation"
 export const Social=()=>{
+  const searchPrams=useSearchParams();
+  const callBackUrl=searchPrams.get("callBackUrl")
     const clickAuth=async(provider: "google" | "github")=>{
       await signIn(provider,{
-        callbackUrl:DEFAULT_LOGIN_REDIRECT
+        callbackUrl:callBackUrl || DEFAULT_LOGIN_REDIRECT
       })
     }
     return(

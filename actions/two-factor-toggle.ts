@@ -3,7 +3,7 @@
 import { db } from "@/lib/db"
 
 
-export const   updateTwoFactor=async(twoFactor:boolean,id:string)=>{
+export const   updateTwoFactor=async(twoFactor:boolean,id:string )=>{
  
  
   if(id){

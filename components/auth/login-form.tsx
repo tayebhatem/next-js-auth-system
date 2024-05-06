@@ -26,13 +26,13 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp"
 
 export  const LoginForm=()=>{
     const searchPrams=useSearchParams();
+    const callBackUrl=searchPrams.get("callBackUrl")
     const urlErorr=searchPrams.get("error")==="OAuthAccountNotLinked" ? "Email already used!":""
    const[isPending,startTransition]=useTransition();
    const[error,setError]=useState<string | undefined>("")
    const[sucess,setSucess]=useState<string | undefined>("")
    const[twoFactor,setTwoFactor]=useState<boolean | undefined>()
-   const[email,setEmail]=useState<string | undefined>("")
-   const[password,setPassword]=useState<string | undefined>("")
+   
   
   
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -49,7 +49,7 @@ export  const LoginForm=()=>{
         setSucess("");
        
         startTransition(()=>{
-            login(values).then(
+            login(values,callBackUrl).then(
                 (data)=>{
                   if(data?.error){
                     form.reset()
