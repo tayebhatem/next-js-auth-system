@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.AUTH_RESEND_KEY);
 const domain=process.env.NEXT_PUBLIC_URL
+
 export const sendVerificationEmail=async(email:string,token:string)=>{
    
     const confirmEmail = `${domain}/auth/new-verification?token=${token}`;
