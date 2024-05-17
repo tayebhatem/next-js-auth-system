@@ -6,11 +6,11 @@ const publicUrl=process.env.NEXT_PUBLIC_URL
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // Use `true` for port 465, `false` for all other ports
+    port: 587,
+    secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
       user: "mailauthjs@gmail.com",
-      pass: "qiyp kvvt jbkz iqsv",
+      pass: process.env.NEXT_STMP_PASSWORD,
     },
   });
 
