@@ -29,8 +29,8 @@ export  const LoginForm=()=>{
     const callBackUrl=searchPrams.get("callBackUrl")
     const urlErorr=searchPrams.get("error")==="OAuthAccountNotLinked" ? "Email already used!":""
    const[isPending,startTransition]=useTransition();
-   const[error,setError]=useState<string | undefined>("")
-   const[sucess,setSucess]=useState<string | undefined>("")
+   const[error,setError]=useState<string | undefined>()
+   const[sucess,setSucess]=useState<string | undefined>()
    const[twoFactor,setTwoFactor]=useState<boolean | undefined>()
    
   
@@ -51,7 +51,7 @@ export  const LoginForm=()=>{
         startTransition(()=>{
             login(values,callBackUrl).then(
                 (data)=>{
-                  if(data?.error){
+                  if(data?.error ){
                     form.reset()
                     setError(data?.error)
                   }
@@ -152,8 +152,8 @@ export  const LoginForm=()=>{
         </div>
         
        {
-        error ? <Alert message={error} type="error"/>:
-        urlErorr ? <Alert message={urlErorr} type="error"/>:null
+        !sucess && error ? <Alert message={error} type="error"/>:
+        !sucess && urlErorr ? <Alert message={urlErorr} type="error"/>:null
        }
       
        {

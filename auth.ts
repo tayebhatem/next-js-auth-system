@@ -55,6 +55,7 @@ callbacks:{
      })
      
     }
+    
    return true
   },
 session({token,session}){
@@ -83,7 +84,7 @@ async jwt({token}){
     if (!userExists )return token
     token.role=userExists.role
     token.isTwoFactorEnabled=userExists.isTwoFactorEnabled
-  
+    
     return token
 }
 },

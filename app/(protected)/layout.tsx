@@ -16,7 +16,7 @@ import {
   import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { signOut } from "next-auth/react"
 import { useCurrentUser } from "@/hooks/useCuurentUser"
-
+export const dynamic = 'force-dynamic'
 export default function ProtectedLayout({children}:{children:React.ReactNode}) {
     const logOut=()=>{
         signOut()

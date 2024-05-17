@@ -1,35 +1,47 @@
 
 
 import { Resend } from 'resend';
-
+import nodemailer from "nodemailer"
 const resend = new Resend(process.env.AUTH_RESEND_KEY);
+
+const publicUrl=process.env.NEXT_PUBLIC_URL
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // Use `true` for port 465, `false` for all other ports
+    auth: {
+      user: "mailauthjs@gmail.com",
+      pass: process.env.NEXT_STMP_PASSWORD,
+    },
+  });
 
 
 export const sendVerificationEmail=async(email:string,token:string)=>{
    
-    const confirmEmail = `https://next-js-auth-system-ten.vercel.app/auth/new-verification?token=${token}`;
-    await resend.emails.send({
-        from:'onboarding@resend.dev',
-        to: email,
-        subject:"Cofirm email",
-        html:`<p>Click <a href="${confirmEmail}">here</a> to confirm email</p>`
-    })
+    const confirmEmail = `${publicUrl}/auth/new-verification?token=${token}`;
+ 
+    await transporter.sendMail({
+        to: email, // list of receivers
+        subject: "Confirm email", // Subject line
+        html: `<p>Click <a href="${confirmEmail}">here</a> to confirm email</p>`, // html body
+      });
 }
-export const sendPasswordReset=async(email:string,token:string)=>{
-    const resetLink = `https://next-js-auth-system-ten.vercel.app/auth/new-password?token=${token}`;
-    await resend.emails.send({
-        from:'onboarding@resend.dev',
-        to: email,
-        subject:"Reset your password",
-        html:`<p>Click <a href="${resetLink}">here</a> to reset your password</p>`
-    })
-}
+
 export const sendTwoFactorEmail=async(email:string,token:string)=>{
-    
-    await resend.emails.send({
-        from:'onboarding@resend.dev',
-        to: email,
-        subject:"Cofirm email",
+    await transporter.sendMail({
+        to: email, 
+        subject: "Confirm email", 
         html:`<p>Your confirmation code is ${token} </p>`
-    })
+      });
 }
+
+  export const sendPasswordReset=async(email:string,token:string)=> {
+    const resetLink = `${publicUrl}/auth/new-password?token=${token}`;
+    // send mail with defined transport object
+    await transporter.sendMail({
+      to: email, // list of receivers
+      subject: "Reset your password", // Subject line
+      html: `<p>Click <a href="${resetLink}">here</a> to reset your password</p>`, // html body
+    });
+  }

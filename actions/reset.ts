@@ -16,6 +16,7 @@ export const reset=async(values:z.infer<typeof RestSchema>)=>{
     }
 
     const passwordToken=await generateForgetPasswordToken(email);
-    sendPasswordReset(passwordToken.email,passwordToken.token)
+  
+   sendPasswordReset(passwordToken.email,passwordToken.token)
    return {sucess:"Email sent !"}
 }

@@ -29,9 +29,7 @@ await db.user.update({
 }
 )
 
-await db.verificationToken.delete({
-    where:{id:exisitingToken.id}
-})
+//await db.verificationToken.delete({where:{id:exisitingToken.id}})
 return {sucess:"Email has been verified !"}
 }
 
