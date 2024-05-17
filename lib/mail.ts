@@ -6,8 +6,8 @@ const publicUrl=process.env.NEXT_PUBLIC_URL
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // Use `true` for port 465, `false` for all other ports
+   
+   
     auth: {
       user: "mailauthjs@gmail.com",
       pass: process.env.NEXT_STMP_PASSWORD,
