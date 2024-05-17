@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     secure: true, // Use `true` for port 465, `false` for all other ports
     auth: {
       user: "mailauthjs@gmail.com",
-      pass: process.env.NEXT_STMP_PASSWORD,
+      pass: "qiyp kvvt jbkz iqsv",
     },
   });
 
