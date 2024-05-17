@@ -1,8 +1,6 @@
 
-
-import { Resend } from 'resend';
 import nodemailer from "nodemailer"
-const resend = new Resend(process.env.AUTH_RESEND_KEY);
+
 
 const publicUrl=process.env.NEXT_PUBLIC_URL
 
