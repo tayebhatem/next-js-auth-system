@@ -89,16 +89,9 @@ export  const LoginForm=()=>{
             <FormItem className="w-full flex flex-col justify-center items-center">
               <FormLabel>Confirm code</FormLabel>
               <FormControl>
-                <InputOTP maxLength={6} {...field} className="w-full">
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
+                
+                
+                <Input placeholder="Enter your confirmation code" {...field} className="w-full" />
               </FormControl>
               <FormDescription className="text-center">
                 Please enter the one-time password sent to your email.
