@@ -33,24 +33,6 @@ export const sendVerificationEmail=async(email:string,token:string)=>{
     });
 }
 
-export const sendTwoFactorEmail=async(email:string,token:string)=>{
-   
-      return await new Promise((resolve, reject) => {
-        transporter.sendMail({
-          to: email, 
-          subject: "Confirm email", 
-          html:`<p>Your confirmation code is ${token} </p>`
-        }, (err, info) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(info);
-            }
-        });
-    });
-      
-}
-
   export const sendPasswordReset=async(email:string,token:string)=> {
     const resetLink = `${publicUrl}/auth/new-password?token=${token}`;
     // send mail with defined transport object
@@ -69,3 +51,21 @@ export const sendTwoFactorEmail=async(email:string,token:string)=>{
       });
   });
   }
+
+  export const sendTwoFactorEmail=async(email:string,token:string)=>{
+   
+    return await new Promise((resolve, reject) => {
+      transporter.sendMail({
+        to: email, 
+        subject: "Confirm email", 
+        html:`<p>Your confirmation code is ${token} </p>`
+      }, (err, info) => {
+          if (err) {
+              reject(err);
+          } else {
+              resolve(info);
+          }
+      });
+  });
+    
+}
