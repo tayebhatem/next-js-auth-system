@@ -18,20 +18,37 @@ const transporter = nodemailer.createTransport({
 export const sendVerificationEmail=async(email:string,token:string)=>{
    
     const confirmEmail = `${publicUrl}/auth/new-verification?token=${token}`;
- 
-    await transporter.sendMail({
-        to: email, // list of receivers
+      return await new Promise((resolve, reject) => {
+        transporter.sendMail({
+          to: email, // list of receivers
         subject: "Confirm email", // Subject line
         html: `<p>Click <a href="${confirmEmail}">here</a> to confirm email</p>`, // html body
-      });
+        }, (err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    });
 }
 
 export const sendTwoFactorEmail=async(email:string,token:string)=>{
-    await transporter.sendMail({
-        to: email, 
-        subject: "Confirm email", 
-        html:`<p>Your confirmation code is ${token} </p>`
-      });
+   
+      return await new Promise((resolve, reject) => {
+        transporter.sendMail({
+          to: email, 
+          subject: "Confirm email", 
+          html:`<p>Your confirmation code is ${token} </p>`
+        }, (err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    });
+      
 }
 
   export const sendPasswordReset=async(email:string,token:string)=> {
