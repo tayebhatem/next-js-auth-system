@@ -52,6 +52,7 @@ export const sendTwoFactorEmail=async(email:string,token:string)=>{
 }
 
   export const sendPasswordReset=async(email:string,token:string)=> {
+    
     const resetLink = `${publicUrl}/auth/new-password?token=${token}`;
     // send mail with defined transport object
    
