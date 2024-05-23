@@ -52,7 +52,7 @@ export  const LoginForm=()=>{
             login(values,callBackUrl).then(
                 (data)=>{
                   if(data?.error ){
-                    form.reset()
+                    
                     setError(data?.error)
                   }
                  if(data?.sucess){
@@ -89,9 +89,16 @@ export  const LoginForm=()=>{
             <FormItem className="w-full flex flex-col justify-center items-center">
               <FormLabel>Confirm code</FormLabel>
               <FormControl>
-                
-                
-                <Input placeholder="Enter your confirmation code" {...field} className="w-full" />
+                <InputOTP maxLength={6} {...field} className="w-full">
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                  </InputOTPGroup>
+                </InputOTP>
               </FormControl>
               <FormDescription className="text-center">
                 Please enter the one-time password sent to your email.
